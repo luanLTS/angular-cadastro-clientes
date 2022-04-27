@@ -1,3 +1,15 @@
-.input-form-add {
-  width: 50%;
+mat-form-field {
+  width: 100%;
+}
+
+mat-card-actions {
+  width: 25%;
+  margin: 0 auto;
+}
+
+mat-card-actions button {
+  width: 100%;
+  font-size: 1.75rem;
+  padding: .25rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }

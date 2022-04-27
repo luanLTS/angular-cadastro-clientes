@@ -1,27 +1,26 @@
-<h2>Inserção de clientes</h2>
-
-<mat-form-field class="input-form-add" appearance="fill">
-  <mat-label>Digite seu nome</mat-label>
-  <input matInput type="text" [(ngModel)]="nome" />
-  <button *ngIf="nome" matSuffix mat-icon-button aria-label="Limpar" (click)="nome=''">
-    <mat-icon>close</mat-icon>
-  </button>
-</mat-form-field>
-<hr>
-<mat-form-field class="input-form-add" appearance="fill">
-  <mat-label>Digite seu telefone</mat-label>
-  <input matInput type="text" [(ngModel)]="fone" />
-  <button *ngIf="fone" matSuffix mat-icon-button aria-label="Limpar" (click)="fone=''">
-    <mat-icon>close</mat-icon>
-  </button>
-</mat-form-field>
-<hr>
-<mat-form-field class="input-form-add" appearance="fill">
-  <mat-label>Digite seu email</mat-label>
-  <input matInput type="text" [(ngModel)]="email" />
-  <button *ngIf="email" matSuffix mat-icon-button aria-label="Limpar" (click)="email=''">
-    <mat-icon>close</mat-icon>
-  </button>
-</mat-form-field>
-<hr>
-<button (click)="onAddClient()">Inserir cliente</button>
+<mat-card>
+  <mat-form-field appearance="fill">
+    <mat-label>Digite seu nome</mat-label>
+    <input matInput type="text" [(ngModel)]="nome" />
+    <button *ngIf="nome" matSuffix mat-icon-button aria-label="Limpar" (click)="nome=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Digite seu telefone</mat-label>
+    <input matInput type="text" [(ngModel)]="fone" />
+    <button *ngIf="fone" matSuffix mat-icon-button aria-label="Limpar" (click)="fone=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Digite seu email</mat-label>
+    <input matInput type="text" [(ngModel)]="email" />
+    <button *ngIf="email" matSuffix mat-icon-button aria-label="Limpar" (click)="email=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+  <mat-card-actions>
+    <button mat-raised-button color="accent" (click)="onAddClient()">Inserir cliente</button>
+  </mat-card-actions>
+</mat-card>
