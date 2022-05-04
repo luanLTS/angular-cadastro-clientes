@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { Cliente } from '../cliente.model';
 
 // eventEmitter -> abstração capaz de criar eventos
 
@@ -9,7 +10,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class ClienteInserirComponent {
   @Output()
-  clienteAdicionado = new EventEmitter();
+  clienteAdicionado = new EventEmitter<Cliente>();
 
   nome: string;
   fone: string;
