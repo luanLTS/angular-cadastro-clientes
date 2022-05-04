@@ -9,7 +9,7 @@ mat-card-actions {
 
 mat-card-actions button {
   width: 100%;
-  font-size: 1.75rem;
+  font-size: 1.20rem;
   padding: .25rem;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
