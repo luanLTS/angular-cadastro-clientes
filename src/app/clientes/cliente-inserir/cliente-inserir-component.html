@@ -1,26 +1,31 @@
 <mat-card>
-  <mat-form-field appearance="fill">
-    <mat-label>Digite seu nome</mat-label>
-    <input matInput type="text" [(ngModel)]="nome" />
-    <button *ngIf="nome" matSuffix mat-icon-button aria-label="Limpar" (click)="nome=''">
-      <mat-icon>close</mat-icon>
-    </button>
-  </mat-form-field>
-  <mat-form-field appearance="fill">
-    <mat-label>Digite seu telefone</mat-label>
-    <input matInput type="text" [(ngModel)]="fone" />
-    <button *ngIf="fone" matSuffix mat-icon-button aria-label="Limpar" (click)="fone=''">
-      <mat-icon>close</mat-icon>
-    </button>
-  </mat-form-field>
-  <mat-form-field appearance="fill">
-    <mat-label>Digite seu email</mat-label>
-    <input matInput type="text" [(ngModel)]="email" />
-    <button *ngIf="email" matSuffix mat-icon-button aria-label="Limpar" (click)="email=''">
-      <mat-icon>close</mat-icon>
-    </button>
-  </mat-form-field>
-  <mat-card-actions>
-    <button mat-raised-button color="accent" (click)="onAddClient()">Inserir cliente</button>
-  </mat-card-actions>
+  <form (submit)="onAddClient(clienteForm)" #clienteForm="ngForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Digite seu nome</mat-label>
+      <input matInput type="text" ngModel name="nome" required minlength="3" />
+      <button *ngIf="nome" matSuffix mat-icon-button aria-label="Limpar" (click)="nome=''">
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-error>Digite um nome válido</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Digite seu telefone</mat-label>
+      <input matInput type="text" ngModel name="fone" required />
+      <button *ngIf="fone" matSuffix mat-icon-button aria-label="Limpar" (click)="fone=''">
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-error>Digite um telefone válido</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Digite seu email</mat-label>
+      <input matInput type="text" ngModel name="email" required />
+      <button *ngIf="email" matSuffix mat-icon-button aria-label="Limpar" (click)="email=''">
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-error>Digite um e-mail válido</mat-error>
+    </mat-form-field>
+    <mat-card-actions>
+      <button mat-raised-button color="accent">Inserir cliente</button>
+    </mat-card-actions>
+  </form>
 </mat-card>

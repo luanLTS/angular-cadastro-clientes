@@ -10,7 +10,6 @@ export class AppComponent {
   clientes: Cliente[] = [];
 
   onAdicionarCliente(cliente): void {
-    console.log(cliente);
     this.clientes = [...this.clientes, cliente];
     // this.clientes.push(cliente);
   }
