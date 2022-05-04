@@ -14,6 +14,7 @@ import { ClienteInserirComponent } from './clientes/cliente-inserir/cliente-inse
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CabecalhoComponent } from './cabecalho/cabecalho.component';
 import { ClienteListaComponent } from './clientes/cliente-lista/cliente-lista.component';
+import { ClienteServices } from './clientes/cliente.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { ClienteListaComponent } from './clientes/cliente-lista/cliente-lista.co
     MatIconModule,
     MatToolbarModule,
   ],
-  providers: [],
+  providers: [ClienteServices],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
