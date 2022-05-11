@@ -19,6 +19,7 @@ export class ClienteInserirComponent {
         form.value.fone,
         form.value.email
       );
+      form.resetForm();
     }
   }
 }
