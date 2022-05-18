@@ -4,6 +4,8 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 
+const Cliente = require("./models/cliente");
+
 app.use(cors());
 app.use(express.json());
 
@@ -31,8 +33,13 @@ app.get("/api/clientes", (req, res) => {
 });
 
 app.post("/api/clientes", (req, res) => {
-  console.log(req.body);
-  res.status(201).json({message: 'Cliente inserido com sucesso'});
+  const cliente = new Cliente({
+    ...req.body,
+  });
+  /* let { nome, fone, email } = req.body;
+  clientes.push({ nome, fone, email }); */
+  console.log(cliente);
+  res.status(201).json({ message: "Cliente inserido com sucesso" });
 });
 
 // torna o objeto app public para ser utilizado em outras partes do projeto
