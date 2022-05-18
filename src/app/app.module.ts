@@ -16,6 +16,8 @@ import { CabecalhoComponent } from './cabecalho/cabecalho.component';
 import { ClienteListaComponent } from './clientes/cliente-lista/cliente-lista.component';
 import { ClienteServices } from './clientes/cliente.service';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +28,11 @@ import { ClienteServices } from './clientes/cliente.service';
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
+
     FormsModule,
+
+    HttpClientModule,
+
     MatButtonModule,
     MatCardModule,
     MatExpansionModule,
@@ -34,7 +40,7 @@ import { ClienteServices } from './clientes/cliente.service';
     MatIconModule,
     MatToolbarModule,
   ],
-  providers: [ClienteServices],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
