@@ -30,21 +30,6 @@ mongoose
 app.use(cors());
 app.use(express.json());
 
-const clientes = [
-  {
-    id: "1",
-    nome: "Joao",
-    fone: "123456789",
-    email: "joao@cliente.com",
-  },
-  {
-    id: "2",
-    nome: "maria",
-    fone: "123456789",
-    email: "maria@cliente.com",
-  },
-];
-
 // funcao middleware, fica no meio do caminho e pega as requisicoes
 app.get("/api/clientes", (req, res) => {
   Cliente.find().then((documents) => {
