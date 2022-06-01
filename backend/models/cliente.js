@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 // semenlhante ao create table
 
 const clienteSchema = mongoose.Schema({
-  //
   nome: {
     type: String,
     require: true,
