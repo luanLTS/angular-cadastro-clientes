@@ -64,6 +64,14 @@ export class ClienteServices {
       });
   }
 
+  removerCliente(id: string) {
+    this.httpCliente
+      .delete(`http://localhost:3000/api/clientes/${id}`)
+      .subscribe(() => {
+        console.log(`cliente ${id} deletado`);
+      });
+  }
+
   getListaClientesAtualizadaObservable() {
     return this.listaClientesAtualizada.asObservable();
   }

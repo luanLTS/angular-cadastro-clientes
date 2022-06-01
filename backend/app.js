@@ -51,5 +51,18 @@ app.post("/api/clientes", (req, res) => {
   res.status(201).json({ message: "Cliente inserido com sucesso" });
 });
 
+// :id indica que o nome que vier no lugar do id na requicao sera uma variavel, ficando disponivel,
+// automaticamente em req.params
+app.delete("/api/clientes/:id", (req, res) => {
+  Cliente.deleteOne({ _id: req.params.id })
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  res.status(200).end();
+});
+
 // torna o objeto app public para ser utilizado em outras partes do projeto
 module.exports = app;
