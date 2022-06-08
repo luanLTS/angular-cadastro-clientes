@@ -1,8 +1,8 @@
 <mat-card>
-  <form (submit)="onAddClient(clienteForm)" #clienteForm="ngForm">
+  <form (submit)="onSalvarClient(clienteForm)" #clienteForm="ngForm">
     <mat-form-field appearance="fill">
       <mat-label>Digite seu nome</mat-label>
-      <input matInput type="text" ngModel name="nome" required minlength="3" #nomeInput />
+      <input matInput type="text" [ngModel]="cliente?.nome" name="nome" required minlength="3" #nomeInput />
       <button *ngIf="nomeInput.value" matSuffix mat-icon-button aria-label="Limpar" (click)="nomeInput.value=''">
         <mat-icon>close</mat-icon>
       </button>
@@ -10,7 +10,7 @@
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Digite seu telefone</mat-label>
-      <input matInput type="text" ngModel name="fone" required #foneInput />
+      <input matInput type="text" [ngModel]="cliente?.fone" name="fone" required #foneInput />
       <button *ngIf="foneInput.value" matSuffix mat-icon-button aria-label="Limpar" (click)="foneInput.value=''">
         <mat-icon>close</mat-icon>
       </button>
@@ -18,14 +18,15 @@
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Digite seu email</mat-label>
-      <input matInput type="text" ngModel name="email" required #emailInput />
+
+      <input matInput type="text" [ngModel]="cliente?.email" name="email" required #emailInput />
       <button *ngIf="emailInput.value" matSuffix mat-icon-button aria-label="Limpar" (click)="emailInput.value=''">
         <mat-icon>close</mat-icon>
       </button>
       <mat-error>Digite um e-mail válido</mat-error>
     </mat-form-field>
     <mat-card-actions>
-      <button mat-raised-button color="accent">Inserir cliente</button>
+      <button mat-raised-button color="accent">Salvar</button>
     </mat-card-actions>
   </form>
 </mat-card>

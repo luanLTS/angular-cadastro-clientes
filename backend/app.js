@@ -67,5 +67,18 @@ app.delete("/api/clientes/:id", (req, res) => {
   res.status(200).end();
 });
 
+app.put("/api/clientes/:id", (req, res) => {
+  const cliente = new Cliente({
+    ...req.body,
+    _id: req.params.id,
+  });
+  Cliente.updateOne({ _id: req.params.id }, cliente).then((result) => {
+    console.log(result);
+    res.status(200).json({
+      mensagem: "Atualizacao realizada com sucesso",
+    });
+  });
+});
+
 // torna o objeto app public para ser utilizado em outras partes do projeto
 module.exports = app;

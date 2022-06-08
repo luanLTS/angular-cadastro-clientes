@@ -43,15 +43,6 @@ export class ClienteServices {
       });
   }
 
-  /* addCliente(nome: string, fone: string, email: string): void {
-    this.clientes.push({
-      nome,
-      fone,
-      email,
-    });
-    this.listaClientesAtualizada.next([...this.clientes]);
-  } */
-
   addCliente(nome: string, fone: string, email: string) {
     const cliente = {
       nome,
@@ -78,6 +69,19 @@ export class ClienteServices {
       .delete(`http://localhost:3000/api/clientes/${id}`)
       .subscribe(() => {
         console.log(`cliente ${id} deletado`);
+      });
+  }
+
+  atualizarCliente(id: string, nome: string, fone: string, email: string) {
+    const cliente = { nome, fone, email };
+    this.httpCliente
+      .put(`http://localhost:3000/api/clientes/${id}`, cliente)
+      .subscribe((res) => {
+        const copiaLista = [...this.clientes];
+        const indice = copiaLista.findIndex((cli) => cli.id === id);
+        copiaLista[indice] = { ...cliente, id };
+        this.clientes = copiaLista;
+        this.listaClientesAtualizada.next([...this.clientes]);
       });
   }
 
