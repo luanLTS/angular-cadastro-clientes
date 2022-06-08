@@ -7,7 +7,9 @@ const routes: Routes = [
   // localhost:porta/
   { path: '', component: ClienteListaComponent },
   // localhost:porta/criar
-  { path: '/criar', component: ClienteInserirComponent },
+  { path: 'criar', component: ClienteInserirComponent },
+  //localhost:porta/atualizar
+  { path: 'atualizar/:id', component: ClienteInserirComponent },
 ];
 
 // router outlate
