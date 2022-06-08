@@ -46,9 +46,12 @@ app.post("/api/clientes", (req, res) => {
   });
   /* let { nome, fone, email } = req.body;
   clientes.push({ nome, fone, email }); */
-  cliente.save();
-  console.log(cliente);
-  res.status(201).json({ message: "Cliente inserido com sucesso" });
+  cliente.save().then((clienteInserido) => {
+    res.status(201).json({
+      message: "Cliente inserido com sucesso",
+      id: clienteInserido._id,
+    });
+  });
 });
 
 // :id indica que o nome que vier no lugar do id na requicao sera uma variavel, ficando disponivel,

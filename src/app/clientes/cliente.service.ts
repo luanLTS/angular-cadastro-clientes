@@ -53,12 +53,17 @@ export class ClienteServices {
       nome,
       fone,
       email,
+      id: '',
     };
 
     this.httpCliente
-      .post<{ message: string }>(`http://localhost:3000/api/clientes`, cliente)
+      .post<{ message: string; id: string }>(
+        `http://localhost:3000/api/clientes`,
+        cliente
+      )
       .subscribe((dados) => {
         console.log(dados.message);
+        cliente.id = dados.id;
         this.clientes.push(cliente);
         this.listaClientesAtualizada.next([...this.clientes]);
       });
