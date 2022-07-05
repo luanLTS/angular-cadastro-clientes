@@ -6,7 +6,7 @@
     <p>Telefone: {{ cliente.fone }}</p>
     <p>E-mail: {{ cliente.email }}</p>
     <mat-action-row>
-      <button (routerLink)="['/editar', cliente.id]" mat-button color="primary">EDITAR</button>
+      <button (routerLink)="['editar', cliente.id]" mat-button color="primary">EDITAR</button>
 
       <button (click)="onDelete(cliente.id)" mat-button color="warn">REMOVER</button>
     </mat-action-row>
