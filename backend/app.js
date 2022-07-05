@@ -12,12 +12,12 @@ const {
   MONGODB_PASSWD,
   MONGODB_CLUSTER,
   MONGODB_HOST,
-  MONGODB_DB,
+  MONGODB_DATABASE,
 } = process.env;
 
 mongoose
   .connect(
-    `mongodb+srv://${MONGODB_USER}:${MONGODB_PASSWD}@${MONGODB_CLUSTER}.${MONGODB_HOST}.mongodb.net/${MONGODB_DB}?retryWrites=true&w=majority`
+    `mongodb+srv://${MONGODB_USER}:${MONGODB_PASSWD}@${MONGODB_CLUSTER}.${MONGODB_HOST}.mongodb.net/${MONGODB_DATABASE}?retryWrites=true&w=majority`
   )
   .then(() => {
     console.log("conexao okay");
@@ -37,6 +37,16 @@ app.get("/api/clientes", (req, res) => {
       message: "OK",
       clientes: documents,
     });
+  });
+});
+
+app.get("/api/clientes/:id", (req, res) => {
+  Cliente.findById(req.params.id).then((docCliente) => {
+    if (docCliente) {
+      res.status(200).json(docCliente);
+    } else {
+      res.status(404).json({ mensagem: "Cliente não encontrado!" });
+    }
   });
 });
 

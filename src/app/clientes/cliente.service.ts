@@ -16,8 +16,13 @@ export class ClienteServices {
     return [...this.clientes]; // envia uma copia da lista, não a referenca dela
   } */
 
-  getCliente(id: string): Cliente {
-    return { ...this.clientes.find((cli) => cli.id === id) };
+  getCliente(id: string): any {
+    // return { ...this.clientes.find((cli) => cli.id === id) };
+    return this.httpCliente
+      .get<{ _id: string; nome: string; fone: string; email: string }>(
+        `http://localhost:3000/api/clientes/${id}`
+      )
+      .subscribe((dados) => {});
   }
 
   getClientes(): void {
