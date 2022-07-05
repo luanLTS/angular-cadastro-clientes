@@ -20,15 +20,18 @@ export class ClienteInserirComponent implements OnInit {
   private modo: string = 'criar';
   private idCliente: string;
   public cliente: Cliente;
+  public isLoading: boolean = false;
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has('idCliente')) {
         this.modo = 'editar';
         this.idCliente = paramMap.get('idCliente');
+        this.isLoading = true;
         this.clienteServices
           .getCliente(this.idCliente)
           .subscribe((dadosCli) => {
+            this.isLoading = false;
             this.cliente = {
               id: dadosCli._id,
               nome: dadosCli.nome,
@@ -45,6 +48,7 @@ export class ClienteInserirComponent implements OnInit {
 
   onSalvarClient(form: NgForm) {
     if (!form.invalid) {
+      this.isLoading = true;
       if (this.modo === 'criar') {
         this.clienteServices.addCliente(
           form.value.nome,

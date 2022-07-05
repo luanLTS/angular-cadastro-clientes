@@ -3,6 +3,7 @@ import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 // single source of truth
 @Injectable({ providedIn: 'root' })
@@ -10,7 +11,7 @@ export class ClienteServices {
   private clientes: Cliente[] = [];
   private listaClientesAtualizada = new Subject<Cliente[]>(); // o evento vai gerar uma lista de clientes
 
-  constructor(private httpCliente: HttpClient) {}
+  constructor(private httpCliente: HttpClient, private router: Router) {}
 
   /*   getClientes(): Cliente[] {
     return [...this.clientes]; // envia uma copia da lista, não a referenca dela
@@ -18,11 +19,12 @@ export class ClienteServices {
 
   getCliente(id: string): any {
     // return { ...this.clientes.find((cli) => cli.id === id) };
-    return this.httpCliente
-      .get<{ _id: string; nome: string; fone: string; email: string }>(
-        `http://localhost:3000/api/clientes/${id}`
-      )
-      .subscribe((dados) => {});
+    return this.httpCliente.get<{
+      _id: string;
+      nome: string;
+      fone: string;
+      email: string;
+    }>(`http://localhost:3000/api/clientes/${id}`);
   }
 
   getClientes(): void {
@@ -66,6 +68,7 @@ export class ClienteServices {
         cliente.id = dados.id;
         this.clientes.push(cliente);
         this.listaClientesAtualizada.next([...this.clientes]);
+        this.router.navigate(['/']);
       });
   }
 
@@ -87,6 +90,8 @@ export class ClienteServices {
         copiaLista[indice] = { ...cliente, id };
         this.clientes = copiaLista;
         this.listaClientesAtualizada.next([...this.clientes]);
+        // o objeto do router do angular consegue fazer os redirecionamentos de telas com o metodo navigate()
+        this.router.navigate(['/']);
       });
   }
 

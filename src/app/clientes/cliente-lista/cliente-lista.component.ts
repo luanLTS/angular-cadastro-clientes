@@ -11,13 +11,17 @@ export class ClienteListaComponent implements OnInit, OnDestroy {
   private clientesSubscription: Subscription;
   clientes: Cliente[] = [];
 
+  public isLoading: boolean = false;
+
   // a lista de parametros do construtor são as dependencias desta classe
   constructor(private clienteService: ClienteServices) {}
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.clientesSubscription = this.clienteService
       .getListaClientesAtualizadaObservable()
       .subscribe((clientes: Cliente[]): void => {
+        this.isLoading = false;
         this.clientes = clientes;
       });
     this.clienteService.getClientes();

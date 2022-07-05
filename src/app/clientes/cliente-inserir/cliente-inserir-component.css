@@ -13,3 +13,7 @@ mat-card-actions button {
   padding: .25rem;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+mat-spinner{
+  margin: auto;
+}
