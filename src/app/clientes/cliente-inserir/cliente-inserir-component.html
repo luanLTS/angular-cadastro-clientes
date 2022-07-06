@@ -19,8 +19,15 @@
 
     <div style="margin-bottom: 15px;">
       <button mat-stroked-button type="button" (click)="selecionaArquivo.click()">Selecionar imagem</button>
-      <input type="file" #selecionaArquivo>
+      <input (change)="onImagemSelecionada($event)" type="file" #selecionaArquivo>
+      <!-- esta hidden no css para que possa apenas utilizar a funcionalidade de navegar nas pastas do computador-->
     </div>
+
+    <div *ngIf="urlImagemPreview && urlImagemPreview !== ''" class="imagem-preview">
+      <img [src]="urlImagemPreview" [alt]="form.value.nome"
+        *ngIf="urlImagemPreview && urlImagemPreview !== '' && form.get('imagem').valid">
+    </div>
+
     <!-- fone -->
     <mat-form-field appearance="fill">
       <mat-label>Digite seu telefone</mat-label>

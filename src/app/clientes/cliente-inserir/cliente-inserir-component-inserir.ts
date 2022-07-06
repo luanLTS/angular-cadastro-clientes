@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Cliente } from '../cliente.model';
 import { ClienteServices } from '../cliente.service';
+import { mimeTypeValidator } from './mime-type.validator';
 
 // eventEmitter -> abstração capaz de criar eventos
 
@@ -21,6 +22,7 @@ export class ClienteInserirComponent implements OnInit {
   private idCliente: string;
   public cliente: Cliente;
   public isLoading: boolean = false;
+  public urlImagemPreview: string;
 
   // estrutura de dados que representa o forms do template
   // os reactives forms são utilizado mais para fazer validacoes complexas em um formulario
@@ -38,6 +40,10 @@ export class ClienteInserirComponent implements OnInit {
       }),
       email: new FormControl(null, {
         validators: [Validators.required, Validators.email],
+      }),
+      imagem: new FormControl(null, {
+        validators: [Validators.required],
+        asyncValidators: [mimeTypeValidator],
       }),
     });
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
@@ -90,5 +96,20 @@ export class ClienteInserirComponent implements OnInit {
       }
       this.form.reset();
     }
+  }
+
+  onImagemSelecionada(event: Event) {
+    const arquivo = (event.target as HTMLInputElement).files[0]; // pega informacoes do arquivo que a pessoa selecionou
+    // o comando patch serve para alterar apenas um pedaço do objeto do forms, não ele todo
+    this.form.patchValue({ imagem: arquivo });
+    this.form.get('imagem').updateValueAndValidity();
+
+    const reader = new FileReader(); // classe para fazer a leitura de arquivos
+    // explica o que vai acontecer com a imagem quando ela for carregada
+    reader.onload = () => {
+      this.urlImagemPreview = reader.result as string;
+    };
+    // fala qual é o arquivo que vai ser lido
+    reader.readAsDataURL(arquivo);
   }
 }
