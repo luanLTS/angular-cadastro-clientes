@@ -1,25 +1,30 @@
 <mat-card>
   <mat-spinner *ngIf="isLoading"></mat-spinner>
-  <form *ngIf="!isLoading" (submit)="onSalvarClient(clienteForm)" #clienteForm="ngForm">
+
+  <!-- template driven form -->
+  <!-- ele é um form definido completamento definido no template do componente -->
+  <!-- form group corresponde ao objeto de formulario que foi definido no ts do componente -->
+  <form [formGroup]="form" *ngIf="!isLoading" (submit)="onSalvarClient()">
 
     <!-- nome -->
     <mat-form-field appearance="fill">
       <mat-label>Digite seu nome</mat-label>
-      <input matInput type="text" [ngModel]="cliente?.nome" name="nome" required minlength="3" #nomeInput />
+      <!-- form control name vincula o form control definido no ts do componente dentro do objeto do form group -->
+      <input matInput type="text" name="nome" #nomeInput formControlName="nome" />
       <button *ngIf="nomeInput.value" matSuffix mat-icon-button aria-label="Limpar" (click)="nomeInput.value=''">
         <mat-icon>close</mat-icon>
       </button>
       <mat-error>Digite um nome válido</mat-error>
     </mat-form-field>
 
-    <div>
+    <div style="margin-bottom: 15px;">
       <button mat-stroked-button type="button" (click)="selecionaArquivo.click()">Selecionar imagem</button>
       <input type="file" #selecionaArquivo>
     </div>
     <!-- fone -->
     <mat-form-field appearance="fill">
       <mat-label>Digite seu telefone</mat-label>
-      <input matInput type="text" [ngModel]="cliente?.fone" name="fone" required #foneInput />
+      <input matInput type="text" name="fone" #foneInput formControlName="fone" />
       <button *ngIf="foneInput.value" matSuffix mat-icon-button aria-label="Limpar" (click)="foneInput.value=''">
         <mat-icon>close</mat-icon>
       </button>
@@ -30,7 +35,7 @@
 
 
       <!-- email -->
-      <input matInput type="text" [ngModel]="cliente?.email" name="email" required #emailInput />
+      <input matInput type="text" name="email" #emailInput formControlName="email" />
       <button *ngIf="emailInput.value" matSuffix mat-icon-button aria-label="Limpar" (click)="emailInput.value=''">
         <mat-icon>close</mat-icon>
       </button>
