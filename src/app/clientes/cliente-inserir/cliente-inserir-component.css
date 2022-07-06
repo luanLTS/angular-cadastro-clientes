@@ -17,3 +17,8 @@ mat-card-actions button {
 mat-spinner{
   margin: auto;
 }
+
+
+input[type="file"] {
+visibility: hidden;
+}
