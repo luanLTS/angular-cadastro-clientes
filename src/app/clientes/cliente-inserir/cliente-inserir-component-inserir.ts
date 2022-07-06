@@ -41,9 +41,10 @@ export class ClienteInserirComponent implements OnInit {
       }),
     });
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
-      if (paramMap.has('idCliente')) {
+      if (paramMap.has('id')) {
+        console.log('entrou no modo de edicao');
         this.modo = 'editar';
-        this.idCliente = paramMap.get('idCliente');
+        this.idCliente = paramMap.get('id');
         this.isLoading = true;
         this.clienteServices
           .getCliente(this.idCliente)
@@ -63,6 +64,7 @@ export class ClienteInserirComponent implements OnInit {
             });
           });
       } else {
+        console.log('entrou no modo de criar');
         this.modo = 'criar';
         this.idCliente = null;
       }

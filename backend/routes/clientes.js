@@ -14,6 +14,7 @@ router.get("", (req, res) => {
 });
 
 router.get("/:id", (req, res) => {
+  console.log(req.params.id);
   Cliente.findById(req.params.id).then((docCliente) => {
     if (docCliente) {
       res.status(200).json(docCliente);

@@ -39,7 +39,7 @@ export class ClienteServices {
               id: cliente._id,
               nome: cliente.nome,
               fone: cliente.fone,
-              email: cliente.emai,
+              email: cliente.email,
             };
           });
         })
