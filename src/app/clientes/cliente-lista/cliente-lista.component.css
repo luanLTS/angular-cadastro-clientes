@@ -7,3 +7,14 @@
 mat-spinner{
   margin: auto;
 }
+
+
+.cliente-imagem{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.cliente-imagem > img {
+  max-width: 50%;
+}

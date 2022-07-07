@@ -40,6 +40,7 @@ export class ClienteServices {
               nome: cliente.nome,
               fone: cliente.fone,
               email: cliente.email,
+              imagemURL: cliente.imagemURL
             };
           });
         })
@@ -50,22 +51,36 @@ export class ClienteServices {
       });
   }
 
-  addCliente(nome: string, fone: string, email: string) {
-    const cliente = {
-      nome,
-      fone,
-      email,
-      id: '',
-    };
+  addCliente(nome: string, fone: string, email: string, imagem: File) {
+    // quando os dados passados não sao objetos json simples
+    // const cliente = {
+    //   nome,
+    //   fone,
+    //   email,
+    //   id: '',
+    // };
+
+    const dadosCliente = new FormData();
+    dadosCliente.append('nome', nome);
+    dadosCliente.append('fone', fone);
+    dadosCliente.append('email', email);
+    dadosCliente.append('imagem', imagem);
 
     this.httpCliente
-      .post<{ message: string; id: string }>(
+      .post<{ message: string; cliente: Cliente }>(
         `http://localhost:3000/api/clientes`,
-        cliente
+        dadosCliente
       )
       .subscribe((dados) => {
         console.log(dados.message);
-        cliente.id = dados.id;
+        // cliente.id = dados.id;
+        const cliente = {
+          id: dados.cliente.id,
+          nome: nome,
+          fone: fone,
+          email: email,
+          imagemURL: dados.cliente.imagemURL
+        }
         this.clientes.push(cliente);
         this.listaClientesAtualizada.next([...this.clientes]);
         this.router.navigate(['/']);
@@ -81,7 +96,7 @@ export class ClienteServices {
   }
 
   atualizarCliente(id: string, nome: string, fone: string, email: string) {
-    const cliente = { nome, fone, email };
+    const cliente = { nome, fone, email, imagemURL: null };
     this.httpCliente
       .put(`http://localhost:3000/api/clientes/${id}`, cliente)
       .subscribe((res) => {

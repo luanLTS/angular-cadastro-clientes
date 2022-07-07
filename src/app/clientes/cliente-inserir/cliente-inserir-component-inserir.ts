@@ -61,6 +61,7 @@ export class ClienteInserirComponent implements OnInit {
               nome: dadosCli.nome,
               fone: dadosCli.fone,
               email: dadosCli.email,
+              imagemURL: null
             };
             // setta os valores dos inputs com os valores que vieram do objeto da lista
             this.form.setValue({
@@ -84,7 +85,8 @@ export class ClienteInserirComponent implements OnInit {
         this.clienteServices.addCliente(
           this.form.value.nome,
           this.form.value.fone,
-          this.form.value.email
+          this.form.value.email,
+          this.form.value.imagem
         );
       } else {
         this.clienteServices.atualizarCliente(
@@ -101,7 +103,7 @@ export class ClienteInserirComponent implements OnInit {
   onImagemSelecionada(event: Event) {
     const arquivo = (event.target as HTMLInputElement).files[0]; // pega informacoes do arquivo que a pessoa selecionou
     // o comando patch serve para alterar apenas um pedaço do objeto do forms, não ele todo
-    this.form.patchValue({ imagem: arquivo });
+    this.form.patchValue({ 'imagem': arquivo });
     this.form.get('imagem').updateValueAndValidity();
 
     const reader = new FileReader(); // classe para fazer a leitura de arquivos

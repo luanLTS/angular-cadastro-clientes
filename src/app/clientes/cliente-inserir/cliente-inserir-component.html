@@ -23,7 +23,7 @@
       <!-- esta hidden no css para que possa apenas utilizar a funcionalidade de navegar nas pastas do computador-->
     </div>
 
-    <div *ngIf="urlImagemPreview && urlImagemPreview !== ''" class="imagem-preview">
+    <div *ngIf="urlImagemPreview && urlImagemPreview !== ''" class=" imagem-preview">
       <img [src]="urlImagemPreview" [alt]="form.value.nome"
         *ngIf="urlImagemPreview && urlImagemPreview !== '' && form.get('imagem').valid">
     </div>

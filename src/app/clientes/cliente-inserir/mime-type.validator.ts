@@ -35,12 +35,13 @@ export const mimeTypeValidator = (
           case 'ffd8ffe8':
           case '424db682': // bitmap
             valido = true;
-            break;
+          break;
           default:
             valido = false;
         }
 
         observer.next(valido ? null : { mimeTypeInvalido: true });
+        observer.complete();
       });
 
       leitor.readAsArrayBuffer(arquivo);

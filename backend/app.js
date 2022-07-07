@@ -1,4 +1,5 @@
 // este arquivo é um modulo js
+const path = require("path");
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
@@ -6,8 +7,9 @@ const app = express();
 const mongoose = require("mongoose");
 
 // rotas
-
 const routerClientes = require("./routes/clientes");
+
+
 
 const {
   MONGODB_USER,
@@ -28,6 +30,8 @@ mongoose
     console.log("conexao não okay");
     console.log(err);
   });
+
+app.use('/images', express.static(path.join('backend/images')))
 
 app.use(cors());
 app.use(express.json());

@@ -15,6 +15,10 @@ const clienteSchema = mongoose.Schema({
     type: String,
     require: true,
   },
+  imagemURL: {
+    type: String,
+    required: true
+  }
 });
 
 module.exports = mongoose.model("Cliente", clienteSchema);
